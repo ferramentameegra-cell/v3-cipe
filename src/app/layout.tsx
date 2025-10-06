@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Studio Admin - CRM Dashboard",
-  description: "Modern CRM dashboard built with Next.js and Shadcn UI",
+  title: "CIPE - Central de Inteligência Política e Eleitoral",
+  description: "Sistema completo de inteligência política com dashboard presidencial e Oracle CIPE integrado",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={inter.className}>
         {children}
       </body>

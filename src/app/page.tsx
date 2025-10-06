@@ -11,13 +11,10 @@ export default function HomePage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-          <span className="text-white font-bold text-2xl">S</span>
-        </div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Studio Admin</h1>
-        <p className="text-gray-600">Carregando...</p>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500 mx-auto"></div>
+        <p className="text-white mt-4 text-lg">Carregando CIPE...</p>
       </div>
     </div>
   );

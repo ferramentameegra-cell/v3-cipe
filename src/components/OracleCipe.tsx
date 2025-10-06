@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
   Brain, Send, Mic, MicOff, Volume2, VolumeX, 
@@ -89,10 +88,8 @@ export default function OracleCipe() {
     setMessage('');
     setIsLoading(true);
 
-    // Simular processamento
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Buscar resposta baseada na mensagem
     const lowerMessage = message.toLowerCase();
     let response = getRandomResponse();
 
@@ -127,24 +124,24 @@ export default function OracleCipe() {
 
   const getCategoryColor = (category?: string) => {
     switch (category) {
-      case 'analysis': return 'variant="default"';
-      case 'recommendation': return 'variant="success"';
-      case 'alert': return 'variant="danger"';
-      case 'insight': return 'variant="warning"';
-      default: return 'variant="secondary"';
+      case 'analysis': return 'bg-blue-100 text-blue-800';
+      case 'recommendation': return 'bg-green-100 text-green-800';
+      case 'alert': return 'bg-red-100 text-red-800';
+      case 'insight': return 'bg-yellow-100 text-yellow-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   return (
-    <Card className="modernize-card mb-6">
+    <Card className="mb-6">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 cipe-primary rounded-full flex items-center justify-center">
                 <Brain className="w-5 h-5 text-white" />
               </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-success-500 rounded-full animate-pulse"></div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900">Oracle CIPE</h3>
@@ -157,7 +154,7 @@ export default function OracleCipe() {
               variant="ghost"
               size="sm"
               onClick={() => setIsListening(!isListening)}
-              className={`${isListening ? 'text-danger-600' : 'text-gray-500'} hover:text-gray-700`}
+              className={`${isListening ? 'text-red-600' : 'text-gray-500'} hover:text-gray-700`}
             >
               {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
             </Button>
@@ -165,75 +162,64 @@ export default function OracleCipe() {
               variant="ghost"
               size="sm"
               onClick={() => setIsSpeaking(!isSpeaking)}
-              className={`${isSpeaking ? 'text-primary-600' : 'text-gray-500'} hover:text-gray-700`}
+              className={`${isSpeaking ? 'text-blue-600' : 'text-gray-500'} hover:text-gray-700`}
             >
               {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </Button>
           </div>
         </div>
 
-        {/* Chat Messages */}
         <div className="h-64 overflow-y-auto mb-4 space-y-3">
-          <AnimatePresence>
-            {messages.map((msg) => (
-              <motion.div
-                key={msg.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div className={`max-w-[80%] ${
-                  msg.type === 'user' 
-                    ? 'bg-primary-100 border border-primary-200' 
-                    : 'bg-gray-50 border border-gray-200'
-                } rounded-lg p-3`}>
-                  {msg.type === 'oracle' && msg.category && (
-                    <Badge className={`mb-2 ${getCategoryColor(msg.category)}`}>
-                      {getCategoryIcon(msg.category)}
-                      <span className="ml-1 capitalize">{msg.category}</span>
-                    </Badge>
-                  )}
-                  <div className={`text-sm ${msg.type === 'user' ? 'text-primary-800' : 'text-gray-700'}`}>
-                    {msg.content.split('\n').map((line, i) => (
-                      <div key={i} className={line.startsWith('•') ? 'ml-4' : ''}>
-                        {line.startsWith('**') && line.endsWith('**') ? (
-                          <strong className="text-gray-900">{line.slice(2, -2)}</strong>
-                        ) : line.startsWith('•') ? (
-                          <span className="text-gray-600">{line}</span>
-                        ) : (
-                          line
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-xs text-gray-500 mt-2">
-                    {msg.timestamp.toLocaleTimeString()}
-                  </div>
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`max-w-[80%] ${
+                msg.type === 'user' 
+                  ? 'bg-blue-100 border border-blue-200' 
+                  : 'bg-gray-50 border border-gray-200'
+              } rounded-lg p-3`}>
+                {msg.type === 'oracle' && msg.category && (
+                  <Badge className={`mb-2 ${getCategoryColor(msg.category)}`}>
+                    {getCategoryIcon(msg.category)}
+                    <span className="ml-1 capitalize">{msg.category}</span>
+                  </Badge>
+                )}
+                <div className={`text-sm ${msg.type === 'user' ? 'text-blue-800' : 'text-gray-700'}`}>
+                  {msg.content.split('\n').map((line, i) => (
+                    <div key={i} className={line.startsWith('•') ? 'ml-4' : ''}>
+                      {line.startsWith('**') && line.endsWith('**') ? (
+                        <strong className="text-gray-900">{line.slice(2, -2)}</strong>
+                      ) : line.startsWith('•') ? (
+                        <span className="text-gray-600">{line}</span>
+                      ) : (
+                        line
+                      )}
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                <div className="text-xs text-gray-500 mt-2">
+                  {msg.timestamp.toLocaleTimeString()}
+                </div>
+              </div>
+            </div>
+          ))}
           
           {isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex justify-start"
-            >
+            <div className="flex justify-start">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center space-x-2">
-                  <Loader2 className="w-4 h-4 animate-spin text-primary-600" />
+                  <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
                   <span className="text-sm text-gray-600">Oracle está analisando...</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
           
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Form */}
         <form onSubmit={handleSubmit} className="flex space-x-2">
           <Input
             placeholder="Como posso ajudar hoje? Digite sua pergunta..."
@@ -251,7 +237,6 @@ export default function OracleCipe() {
           </Button>
         </form>
 
-        {/* Quick Actions */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
             'Intenção de voto',

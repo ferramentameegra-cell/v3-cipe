@@ -57,3 +57,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Cores específicas do CIPE */
+.cipe-primary {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.cipe-secondary {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.cipe-accent {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.cipe-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
