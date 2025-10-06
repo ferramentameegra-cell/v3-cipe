@@ -99,9 +99,9 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header baseado no modelo Shadcn */}
-      <div className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Header fixo */}
+      <div className="bg-white border-b border-gray-200 flex-shrink-0">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -153,318 +153,321 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="p-6 space-y-6">
-        {/* Oracle CIPE */}
-        <OracleCipe />
+      {/* Conteúdo principal com scroll */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-6 space-y-6">
+          {/* Oracle CIPE */}
+          <OracleCipe />
 
-        {/* Stats Cards baseados no modelo Shadcn */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Intenção de Voto</CardTitle>
-              <Vote className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">55%</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-green-600">+12.5%</span> do mês anterior
-              </p>
-            </CardContent>
-          </Card>
+          {/* Stats Cards baseados no modelo Shadcn */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Intenção de Voto</CardTitle>
+                <Vote className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">55%</div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-green-600">+12.5%</span> do mês anterior
+                </p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Propostas Enviadas</CardTitle>
-              <MessageSquare className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">24</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-green-600">+8.3%</span> do mês anterior
-              </p>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Propostas Enviadas</CardTitle>
+                <MessageSquare className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">24</div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-green-600">+8.3%</span> do mês anterior
+                </p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Orçamento</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">R$ 2.5M</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-green-600">+15.2%</span> do mês anterior
-              </p>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Orçamento</CardTitle>
+                <DollarSign className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">R$ 2.5M</div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-green-600">+15.2%</span> do mês anterior
+                </p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Apoios Conquistados</CardTitle>
-              <Target className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">136</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-red-600">-2.5%</span> do mês anterior
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Apoios Conquistados</CardTitle>
+                <Target className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">136</div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-red-600">-2.5%</span> do mês anterior
+                </p>
+              </CardContent>
+            </Card>
+          </div>
 
-        {/* Charts Grid baseados no modelo Shadcn */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Intenção de Voto por Fonte */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle>Intenção de Voto por Fonte</CardTitle>
-                <div className="flex items-center space-x-2">
-                  <Button variant="outline" size="sm">
-                    Ver Relatório Completo
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Baixar CSV
-                  </Button>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={intencaoVotoData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="intencao" fill="#3b82f6" />
-                  <Bar dataKey="meta" fill="#10b981" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          {/* Receita vs Meta */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Receita vs Meta</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Progresso médio: 78% · 2 projetos acima da meta
-              </p>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={receitaData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="receita" stroke="#3b82f6" strokeWidth={2} />
-                  <Line type="monotone" dataKey="meta" stroke="#ef4444" strokeWidth={2} strokeDasharray="5 5" />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Pipeline de Vendas e Vendas por Região */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Pipeline de Vendas */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Pipeline de Apoios</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Apoios aumentaram 18.2% desde o mês passado.
-              </p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+          {/* Charts Grid baseados no modelo Shadcn */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Intenção de Voto por Fonte */}
+            <Card>
+              <CardHeader>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Prospectos</span>
-                  <span className="text-sm text-muted-foreground">45%</span>
+                  <CardTitle>Intenção de Voto por Fonte</CardTitle>
+                  <div className="flex items-center space-x-2">
+                    <Button variant="outline" size="sm">
+                      Ver Relatório Completo
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Download className="w-4 h-4 mr-2" />
+                      Baixar CSV
+                    </Button>
+                  </div>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '45%' }}></div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Qualificados</span>
-                  <span className="text-sm text-muted-foreground">32%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-green-600 h-2 rounded-full" style={{ width: '32%' }}></div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Proposta</span>
-                  <span className="text-sm text-muted-foreground">18%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-yellow-600 h-2 rounded-full" style={{ width: '18%' }}></div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Apoio Confirmado</span>
-                  <span className="text-sm text-muted-foreground">5%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-purple-600 h-2 rounded-full" style={{ width: '5%' }}></div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={intencaoVotoData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="intencao" fill="#3b82f6" />
+                    <Bar dataKey="meta" fill="#10b981" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
 
-          {/* Vendas por Região */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Votos por Região</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {vendasPorRegiao.map((regiao, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 rounded-full bg-blue-600"></div>
-                      <div>
-                        <p className="text-sm font-medium">{regiao.regiao}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {regiao.votos.toLocaleString()} votos · {regiao.porcentagem}%
+            {/* Receita vs Meta */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Receita vs Meta</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Progresso médio: 78% · 2 projetos acima da meta
+                </p>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={receitaData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="receita" stroke="#3b82f6" strokeWidth={2} />
+                    <Line type="monotone" dataKey="meta" stroke="#ef4444" strokeWidth={2} strokeDasharray="5 5" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Pipeline de Vendas e Vendas por Região */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Pipeline de Vendas */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Pipeline de Apoios</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Apoios aumentaram 18.2% desde o mês passado.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Prospectos</span>
+                    <span className="text-sm text-muted-foreground">45%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '45%' }}></div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Qualificados</span>
+                    <span className="text-sm text-muted-foreground">32%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-green-600 h-2 rounded-full" style={{ width: '32%' }}></div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Proposta</span>
+                    <span className="text-sm text-muted-foreground">18%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-yellow-600 h-2 rounded-full" style={{ width: '18%' }}></div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Apoio Confirmado</span>
+                    <span className="text-sm text-muted-foreground">5%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-purple-600 h-2 rounded-full" style={{ width: '5%' }}></div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Vendas por Região */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Votos por Região</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {vendasPorRegiao.map((regiao, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+                        <div>
+                          <p className="text-sm font-medium">{regiao.regiao}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {regiao.votos.toLocaleString()} votos · {regiao.porcentagem}%
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className={`text-sm font-medium ${regiao.mudanca > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {regiao.mudanca > 0 ? '+' : ''}{regiao.mudanca}%
                         </p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className={`text-sm font-medium ${regiao.mudanca > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {regiao.mudanca > 0 ? '+' : ''}{regiao.mudanca}%
-                      </p>
-                    </div>
-                  </div>
-                ))}
-                <Separator />
-                <p className="text-xs text-muted-foreground">
-                  5 regiões acompanhadas • 3 regiões crescendo
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Itens de Ação e Leads Recentes */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Itens de Ação */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Itens de Ação</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {itensAcao.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{item.titulo}</p>
-                      <p className="text-xs text-muted-foreground">{item.descricao}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.prazo}</p>
-                    </div>
-                    <Badge variant="outline" className={getPriorityColor(item.prioridade)}>
-                      {item.prioridade}
-                    </Badge>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Leads Recentes Table */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle>Leads Recentes</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Acompanhe e gerencie seus leads mais recentes e seus status.
+                  ))}
+                  <Separator />
+                  <p className="text-xs text-muted-foreground">
+                    5 regiões acompanhadas • 3 regiões crescendo
                   </p>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Button variant="outline" size="sm">
-                    Ver
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    Exportar
-                  </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Itens de Ação e Leads Recentes */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Itens de Ação */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Itens de Ação</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {itensAcao.map((item, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">{item.titulo}</p>
+                        <p className="text-xs text-muted-foreground">{item.descricao}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{item.prazo}</p>
+                      </div>
+                      <Badge variant="outline" className={getPriorityColor(item.prioridade)}>
+                        {item.prioridade}
+                      </Badge>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Ref</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Nome</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Empresa</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Status</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Fonte</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Última Atividade</th>
-                      <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {leadsRecentes.map((lead, index) => (
-                      <tr key={index} className="border-b hover:bg-gray-50">
-                        <td className="py-3 px-4 text-sm font-medium">{lead.ref}</td>
-                        <td className="py-3 px-4 text-sm">{lead.nome}</td>
-                        <td className="py-3 px-4 text-sm">{lead.empresa}</td>
-                        <td className="py-3 px-4">
-                          <Badge variant="outline" className={getStatusColor(lead.status)}>
-                            {lead.status}
-                          </Badge>
-                        </td>
-                        <td className="py-3 px-4 text-sm">{lead.fonte}</td>
-                        <td className="py-3 px-4 text-sm text-muted-foreground">{lead.ultimaAtividade}</td>
-                        <td className="py-3 px-4">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                <MoreHorizontal className="w-4 h-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem>Ver Detalhes</DropdownMenuItem>
-                              <DropdownMenuItem>Editar</DropdownMenuItem>
-                              <DropdownMenuItem>Excluir</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              
-              {/* Paginação */}
-              <div className="flex items-center justify-between mt-4">
-                <p className="text-sm text-muted-foreground">
-                  0 de 15 linha(s) selecionada(s).
-                </p>
-                <div className="flex items-center space-x-2">
-                  <p className="text-sm text-muted-foreground">Linhas por página</p>
-                  <Button variant="outline" size="sm">
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <p className="text-sm text-muted-foreground">Página 1 de 2</p>
-                  <div className="flex space-x-1">
+              </CardContent>
+            </Card>
+
+            {/* Leads Recentes Table */}
+            <Card className="lg:col-span-2">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Leads Recentes</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      Acompanhe e gerencie seus leads mais recentes e seus status.
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-2">
                     <Button variant="outline" size="sm">
-                      <ArrowLeft className="w-4 h-4" />
+                      Ver
                     </Button>
                     <Button variant="outline" size="sm">
-                      <ArrowRight className="w-4 h-4" />
+                      Exportar
                     </Button>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Ref</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Nome</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Empresa</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Status</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Fonte</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Última Atividade</th>
+                        <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {leadsRecentes.map((lead, index) => (
+                        <tr key={index} className="border-b hover:bg-gray-50">
+                          <td className="py-3 px-4 text-sm font-medium">{lead.ref}</td>
+                          <td className="py-3 px-4 text-sm">{lead.nome}</td>
+                          <td className="py-3 px-4 text-sm">{lead.empresa}</td>
+                          <td className="py-3 px-4">
+                            <Badge variant="outline" className={getStatusColor(lead.status)}>
+                              {lead.status}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-4 text-sm">{lead.fonte}</td>
+                          <td className="py-3 px-4 text-sm text-muted-foreground">{lead.ultimaAtividade}</td>
+                          <td className="py-3 px-4">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm">
+                                  <MoreHorizontal className="w-4 h-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Ver Detalhes</DropdownMenuItem>
+                                <DropdownMenuItem>Editar</DropdownMenuItem>
+                                <DropdownMenuItem>Excluir</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                
+                {/* Paginação */}
+                <div className="flex items-center justify-between mt-4">
+                  <p className="text-sm text-muted-foreground">
+                    0 de 15 linha(s) selecionada(s).
+                  </p>
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm text-muted-foreground">Linhas por página</p>
+                    <Button variant="outline" size="sm">
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm text-muted-foreground">Página 1 de 2</p>
+                    <div className="flex space-x-1">
+                      <Button variant="outline" size="sm">
+                        <ArrowLeft className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

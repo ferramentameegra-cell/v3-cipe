@@ -169,7 +169,7 @@ export default function OracleCipe() {
           </div>
         </div>
 
-        <div className="h-64 overflow-y-auto mb-4 space-y-3">
+        <div className="h-80 overflow-y-auto mb-4 space-y-3 pr-2">
           {messages.map((msg) => (
             <div
               key={msg.id}
